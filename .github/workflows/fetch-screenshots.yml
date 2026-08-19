@@ -14,23 +14,29 @@ jobs:
       - name: Download screenshots
         run: |
           set -euo pipefail
-          curl -fsSL -o mobile_search_infield_empty_focused_overlay.png https://litter.catbox.moe/ph73y4.png
-          curl -fsSL -o mobile_search_infield_typed_with_clear_x.png https://litter.catbox.moe/cgqsre.png
-          curl -fsSL -o mobile_search_infield_cleared_still_in_overlay.png https://litter.catbox.moe/l7pivf.png
-          curl -fsSL -o mobile_search_infield_back_dismissed_to_find.png https://litter.catbox.moe/uujhv1.png
+          curl -fsSL -o mobile_search_spacing_empty_focused_overlay.png https://litter.catbox.moe/syv1o3.png
+          curl -fsSL -o mobile_search_spacing_typed_with_clear_x.png https://litter.catbox.moe/wbkwca.png
+          curl -fsSL -o mobile_search_spacing_cleared_still_in_overlay.png https://litter.catbox.moe/wrj92d.png
+          curl -fsSL -o mobile_search_spacing_back_dismissed_to_find.png https://litter.catbox.moe/jnb3nd.png
+          curl -fsSL -o mobile_search_spacing_empty_focused_field_crop.png https://litter.catbox.moe/0asj9k.png
+          curl -fsSL -o mobile_search_spacing_typed_field_crop.png https://litter.catbox.moe/ljzfbe.png
+          curl -fsSL -o mobile_search_spacing_find_bar_field_crop.png https://litter.catbox.moe/tnq87n.png
           file *.png
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add *.png
-          git commit -m "Add in-field chevron screenshots for PR 1780" || true
+          git commit -m "Add overlay spacing screenshots for PR 1780" || true
           git push || true
-          gh release delete screenshots-infield --yes || true
-          gh release create screenshots-infield \
-            mobile_search_infield_empty_focused_overlay.png \
-            mobile_search_infield_typed_with_clear_x.png \
-            mobile_search_infield_cleared_still_in_overlay.png \
-            mobile_search_infield_back_dismissed_to_find.png \
-            --title "PR 1780 in-field chevron screenshots" \
-            --notes "Public mobile-viewport screenshots for wags-hq/wags#1780 in-field back chevron. Safe to delete after review."
+          gh release delete screenshots-spacing --yes || true
+          gh release create screenshots-spacing \
+            mobile_search_spacing_empty_focused_overlay.png \
+            mobile_search_spacing_typed_with_clear_x.png \
+            mobile_search_spacing_cleared_still_in_overlay.png \
+            mobile_search_spacing_back_dismissed_to_find.png \
+            mobile_search_spacing_empty_focused_field_crop.png \
+            mobile_search_spacing_typed_field_crop.png \
+            mobile_search_spacing_find_bar_field_crop.png \
+            --title "PR 1780 overlay spacing screenshots" \
+            --notes "Public mobile-viewport screenshots for wags-hq/wags#1780 overlay search bar spacing. Safe to delete after review."
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
